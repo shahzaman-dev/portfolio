@@ -502,3 +502,150 @@ console.log("%cDesigned with HTML • CSS • JavaScript",
 /* ==========================================
         END OF FILE
 ========================================== */
+
+// ===============================
+// Portfolio JavaScript
+// ===============================
+
+// Navbar Active Link
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+
+// Smooth Scroll
+navLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        target.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+
+// Typing Effect
+const text = [
+    "Full Stack Developer",
+    "Python Developer",
+    "Frontend Developer",
+    "Freelancer"
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type() {
+
+    if (count === text.length) {
+        count = 0;
+    }
+
+    currentText = text[count];
+
+    letter = currentText.slice(0, ++index);
+
+    document.querySelector(".typing").textContent = letter;
+
+    if (letter.length === currentText.length) {
+
+        setTimeout(() => {
+
+            index = 0;
+            count++;
+
+            setTimeout(type, 300);
+
+        }, 1800);
+
+    } else {
+
+        setTimeout(type, 100);
+
+    }
+
+})();
+
+// Back To Top
+const topBtn = document.querySelector(".scroll-top");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 500) {
+        topBtn.classList.add("show");
+    } else {
+        topBtn.classList.remove("show");
+    }
+
+});
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+// Reveal Animation
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", reveal);
+
+function reveal() {
+
+    reveals.forEach(item => {
+
+        const windowHeight = window.innerHeight;
+        const revealTop = item.getBoundingClientRect().top;
+
+        if (revealTop < windowHeight - 100) {
+            item.classList.add("active");
+        }
+
+    });
+
+}
+
+// Contact Form
+const form = document.querySelector("#contact-form");
+
+if(form){
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const name=document.querySelector("#name").value;
+const email=document.querySelector("#email").value;
+
+alert("Thank you "+name+"! Your message has been sent successfully.");
+
+form.reset();
+
+});
+
+}
