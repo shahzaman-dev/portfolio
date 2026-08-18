@@ -1831,3 +1831,40 @@ textarea:focus{
 ::-webkit-scrollbar-track{
     background:#09111d;
 }
+
+/* ==========================================
+   SHAHZAMAN PHOTO CIRCLE FIX (FINAL)
+========================================== */
+
+/* Frame jo photo ke charon taraf hoga */
+.image-frame {
+    display: inline-block;
+    padding: 10px;
+    background: linear-gradient(45deg, #00bfff, transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+    animation: heroFloatCustom 4s ease-in-out infinite;
+}
+
+/* Photo ko perfect circle banane ke liye */
+.hero-image {
+    width: 380px !important;
+    height: 380px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important; /* Chehra kharab nahi hoga */
+    border: 5px solid #08111f; /* Aapka background color */
+    display: block;
+}
+
+@keyframes heroFloatCustom {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Mobile responsive fix */
+@media (max-width: 991px) {
+    .hero-image {
+        width: 250px !important;
+        height: 250px !important;
+    }
+}
